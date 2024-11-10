@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    const claveAPI = 'fbf9fe2249c24292eeea81e49715a525';
+    const claveAPI = 'TU_API_KEY';
 
     // Función para crear las tarjetas de pronóstico
     function crearTarjetasPronostico() {
