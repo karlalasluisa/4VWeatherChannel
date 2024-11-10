@@ -1,8 +1,32 @@
 $(document).ready(function () {
-    const claveAPI = 'tu_clave_API';
+    const claveAPI = 'fbf9fe2249c24292eeea81e49715a525';
 
-    // Crear las tarjetas de pronóstico al cargar la página
-    crearTarjetasPronostico();
+    // Función para crear las tarjetas de pronóstico
+    function crearTarjetasPronostico() {
+        const nombresDias = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+        const contenedorPronostico = $('#forecast-cards');
+
+        const fechaActual = new Date();
+
+        for (let i = 0; i < 4; i++) {
+            const fechaPronostico = new Date();
+            fechaPronostico.setDate(fechaActual.getDate() + i);
+
+            const nombreDia = nombresDias[fechaPronostico.getDay()];
+            const numeroDia = fechaPronostico.getDate();
+
+            // Crear la estructura de la tarjeta
+            contenedorPronostico.append(`
+                <div class="col-md-3 mb-4">
+                    <div class="card day-card">
+                        <div class="card-header text-center font-weight-bold day-header">${nombreDia}, ${numeroDia}</div>
+                        <ul class="list-group list-group-flush" id="pronostico-dia${i + 1}"></ul>
+                    </div>
+                </div>
+            `);
+        }
+    }
+
 
     // Detecta si se permite la geolocalización y obtiene los datos
     if (navigator.geolocation) {
@@ -60,5 +84,8 @@ $(document).ready(function () {
             });
         }
     }
+    
+    // Crear las tarjetas de pronóstico al cargar la página
+    crearTarjetasPronostico();
 
 });
