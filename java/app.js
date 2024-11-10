@@ -14,4 +14,13 @@ $(document).ready(function () {
             alert("No se pudo acceder a la ubicación. Usa la búsqueda de ciudad.");
         });
     }
+
+
+    // Función para obtener el clima por geolocalización
+    function obtenerClimaPorUbicacion(latitud, longitud) {
+        $.getJSON(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitud}&lon=${longitud}&units=metric&lang=es&appid=${claveAPI}`, function (datos) {
+            mostrarDatosClima(datos);
+        });
+    }
+
 });
