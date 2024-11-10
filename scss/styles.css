@@ -1,0 +1,76 @@
+body {
+  background-image: url("../img/bg-body.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.transparent-blue {
+  background-color: rgba(43, 48, 92, 0.5);
+}
+
+.day-card {
+  background-color: rgba(43, 48, 92, 0.6);
+  border: none;
+  color: #FFFFFF;
+  box-shadow: 15px 15px 15px 0px rgb(43, 48, 92);
+}
+
+.day-header {
+  background-color: rgba(43, 48, 92, 0.9);
+  font-size: 1.2rem;
+  color: #FFFFFF;
+}
+
+.list-group-item {
+  background-color: rgba(43, 48, 92, 0.5);
+  border: none;
+  color: #FFFFFF;
+  font-size: 0.9rem;
+}
+.list-group-item span,
+.list-group-item img {
+  display: inline-block;
+  vertical-align: middle;
+}
+.list-group-item img {
+  width: 32px;
+  height: 32px;
+  margin-right: 5px;
+}
+
+.day-card .list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  font-size: 0.85rem;
+}
+.day-card .list-group-item span {
+  flex: 1;
+  text-align: center;
+}
+
+#logo {
+  height: 190px;
+}
+
+.weather-card {
+  box-shadow: 15px 15px 22px 0px rgb(43, 48, 92);
+  height: 190px;
+}
+.weather-card .temp-info {
+  margin-top: 1rem;
+  padding: 1rem;
+  text-align: center;
+}
+.weather-card .temp-info .temp {
+  font-size: 3.5rem;
+}
+.weather-card i {
+  font-size: 120px;
+  color: #F2C464;
+}
+
+/*# sourceMappingURL=styles.css.map */
