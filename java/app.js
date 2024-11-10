@@ -23,4 +23,14 @@ $(document).ready(function () {
         });
     }
 
+    // Función para obtener el clima por ciudad
+    function obtenerClimaPorCiudad(ciudad) {
+        $.getJSON(`https://api.openweathermap.org/data/2.5/forecast?q=${ciudad}&units=metric&lang=es&appid=${claveAPI}`, function (datos) {
+            mostrarDatosClima(datos);
+        }).fail(function () {
+            alert("No se pudo encontrar la ciudad. Inténtalo de nuevo.");
+        });
+    }
+
+
 });
