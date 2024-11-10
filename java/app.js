@@ -27,19 +27,6 @@ $(document).ready(function () {
         }
     }
 
-
-    // Detecta si se permite la geolocalización y obtiene los datos
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (posicion) {
-            const latitud = posicion.coords.latitude;
-            const longitud = posicion.coords.longitude;
-            obtenerClimaPorUbicacion(latitud, longitud);
-        }, function () {
-            alert("No se pudo acceder a la ubicación. Usa la búsqueda de ciudad.");
-        });
-    }
-
-
     // Función para obtener el clima por geolocalización
     function obtenerClimaPorUbicacion(latitud, longitud) {
         $.getJSON(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitud}&lon=${longitud}&units=metric&lang=es&appid=${claveAPI}`, function (datos) {
@@ -55,6 +42,7 @@ $(document).ready(function () {
             alert("No se pudo encontrar la ciudad. Inténtalo de nuevo.");
         });
     }
+
     // Función para mostrar los datos del clima en las tarjetas
     function mostrarDatosClima(datos) {
         const ciudad = datos.city.name;
@@ -84,8 +72,57 @@ $(document).ready(function () {
             });
         }
     }
-    
+
     // Crear las tarjetas de pronóstico al cargar la página
     crearTarjetasPronostico();
+
+    // Detecta si se permite la geolocalización y obtiene los datos
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (posicion) {
+            const latitud = posicion.coords.latitude;
+            const longitud = posicion.coords.longitude;
+            obtenerClimaPorUbicacion(latitud, longitud);
+        }, function () {
+            alert("No se pudo acceder a la ubicación. Usa la búsqueda de ciudad.");
+        });
+    }
+
+    // Evento para buscar el clima por ciudad
+    $('#city-weather').on('click', function () {
+        if (!$('#formulario-busqueda-ciudad').length) {
+            $('#search-container').html(`
+                <div id="formulario-busqueda-ciudad" class="mt-2 d-flex">
+                    <input type="text" id="entrada-ciudad" class="form-control" placeholder="Ingresa ciudad">
+                    <button class="btn btn-primary ms-2" id="boton-buscar-ciudad">Buscar</button>
+                </div>
+            `);
+
+            $('#boton-buscar-ciudad').on('click', function () {
+                const ciudad = $('#entrada-ciudad').val();
+                if (ciudad) {
+                    obtenerClimaPorCiudad(ciudad);
+                }
+            });
+        }
+    });
+
+    // Evento para obtener el clima en la ubicación actual
+    $('#current-weather').on('click', function () {
+        // Oculta el formulario de búsqueda de ciudad si está visible
+        $('#search-container').empty();
+
+        // Intenta obtener la geolocalización del usuario
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (posicion) {
+                const latitud = posicion.coords.latitude;
+                const longitud = posicion.coords.longitude;
+                obtenerClimaPorUbicacion(latitud, longitud);
+            }, function () {
+                alert("No se pudo acceder a la ubicación. Usa la búsqueda de ciudad.");
+            });
+        } else {
+            alert("La geolocalización no está soportada en este navegador.");
+        }
+    });
 
 });
