@@ -1,0 +1,9 @@
+// Mixin para aplicar un fondo con transparencia
+@mixin fondo-transparente($transparencia) {
+    background-color: rgba($color-azul, $transparencia);
+}
+
+// Mixin para sombras
+@mixin sombra($desplazamiento-x, $desplazamiento-y, $difusa, $color) {
+    box-shadow: $desplazamiento-x $desplazamiento-y $difusa 0px $color;
+}

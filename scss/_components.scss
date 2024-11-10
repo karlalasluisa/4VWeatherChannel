@@ -1,0 +1,87 @@
+// Estilos generales para la página
+body {
+    background-image: url('../img/bg-body.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+// Clase para los fondos transparentes
+.transparent-blue {
+    @include fondo-transparente(0.5);
+}
+
+// Estilos para la tarjeta del pronóstico
+.day-card {
+    @include fondo-transparente(0.6);
+    border: none;
+    color: $color-blanco;
+    @include sombra(15px, 15px, 15px, $color-azul);
+}
+
+// Estilos para los encabezados dentro de las tarjetas
+.day-header {
+    @include fondo-transparente(0.9);
+    font-size: $font-size-header;
+    color: $color-blanco;
+}
+
+// Estilos para los elementos de la lista
+.list-group-item {
+    @include fondo-transparente(0.5);
+    border: none;
+    color: $color-blanco;
+    font-size: $font-size-body;
+
+    span,
+    img {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    img {
+        width: 32px;
+        height: 32px;
+        margin-right: 5px;
+    }
+}
+
+// Estilos para los items dentro de las tarjetas de los días
+.day-card .list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    font-size: $font-size-small;
+
+    span {
+        flex: 1;
+        text-align: center;
+    }
+}
+
+// Estilo para el ícono y la información de temperatura
+#logo {
+    height: $height-logo-and-card;
+}
+
+.weather-card {
+    @include sombra(15px, 15px, 22px, $color-azul);
+    height: $height-logo-and-card;
+
+    .temp-info {
+        margin-top: 1rem;
+        padding: 1rem;
+        text-align: center;
+
+        .temp {
+            font-size: $font-size-temp;
+        }
+    }
+
+    i {
+        font-size: 120px;
+        color: $color-amarillo-claro;
+    }
+}
